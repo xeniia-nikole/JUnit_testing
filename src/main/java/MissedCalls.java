@@ -25,7 +25,6 @@ class MissedCalls {
 
     }
 
-
     public boolean clearmissedCallsList() {
         missedCalls.clear();
         return true;
