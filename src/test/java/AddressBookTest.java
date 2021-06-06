@@ -35,18 +35,18 @@ class AddressBookTest {
         Assertions.assertEquals(expected, actual);
     }
 
-    @Test
+   @Test
     void test_deleteContact() {
         // given
         addressBook.addContact(new Contact("Melinda", "89571233445", Group.OTHERS));
         String contactName = "Melinda";
-        Contact contact = addressBook.getContacts().get("89571233445");
 
         // expected
-        boolean expected = !(addressBook.getContacts().containsValue(contact));
+        String expected = ">>Контакт с таким номером телефона не существует";
 
         // when
-        boolean actual = addressBook.deleteContact(contactName);
+        addressBook.deleteContact(contactName);
+        String actual = findContactByNumber("89571233445");
 
         // then
         Assertions.assertEquals(expected, actual);
