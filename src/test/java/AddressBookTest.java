@@ -3,10 +3,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 class AddressBookTest {
-    AddressBook addressBook;
+    public static AddressBook addressBook;
 
     @BeforeAll
-    void create_values (){addressBook = new AddressBook();}
+    static void create_values (){addressBook = new AddressBook();}
 
 
     @Test
@@ -20,7 +20,7 @@ class AddressBookTest {
     }
 
     @Test
-    void test_findContact() {
+    void test_findContactByNumber() {
         // given
         addressBook.addContact(new Contact("John", "89012345678", Group.WORK));
         String contactNumber = "89012345678";
@@ -38,18 +38,14 @@ class AddressBookTest {
     @Test
     void test_deleteContact() {
         // given
-        addressBook.addContact(new Contact("Melinda", "89571233445", Group.OTHERS));
-        String contactName = "Melinda";
-        Contact contact = addressBook.getContacts().get("89571233445");
-
-        // expected
-        boolean expected = !(addressBook.getContacts().containsValue(contact));
+        addressBook.addContact(new Contact("John", "89012345678", Group.WORK));
+        String contactName = "Jhon";
 
         // when
         boolean actual = addressBook.deleteContact(contactName);
 
         // then
-        Assertions.assertEquals(expected, actual);
+        Assertions.assertTrue(actual);
     }
 
 }

@@ -13,9 +13,8 @@ class AddressBook {
     }
 
     public boolean addContact(Contact contact) {
-        boolean result = true;
-        if (contacts.containsKey(contact.getNumber())) result = false;
-       contacts.put(contact.getNumber(), contact);
+        boolean result = !contacts.containsKey(contact.getNumber());
+        contacts.put(contact.getNumber(), contact);
         return result;
     }
 
