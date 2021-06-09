@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 class AddressBookTest {
     public static AddressBook addressBook;
@@ -38,14 +39,19 @@ class AddressBookTest {
     @Test
     void test_deleteContact() {
         // given
-        addressBook.addContact(new Contact("John", "89012345678", Group.WORK));
-        String contactName = "Jhon";
+        addressBook.addContact(new Contact("Melinda", "89571233445", Group.OTHERS));
+        String contactName = "Melinda";
+        String contactNumber = "89571233445";
+
+        // expected
+        String expected = null;
 
         // when
-        boolean actual = addressBook.deleteContact(contactName);
+        addressBook.deleteContact(contactName);
+        String actual = addressBook.findContactByNumber(contactNumber);
 
         // then
-        Assertions.assertTrue(actual);
+        Assertions.assertEquals(expected, actual);
     }
 
 }
