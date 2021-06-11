@@ -1,5 +1,8 @@
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 class AddressBook {
     public void setContacts(Map<String, Contact> contacts) {
@@ -30,11 +33,13 @@ class AddressBook {
 
     public boolean deleteContact(String deleteContact){
         boolean result = true;
+        String delete = null;
         for (Map.Entry<String, Contact> it : contacts.entrySet()) {
             if (it.getValue().getName().equals(deleteContact))
-                contacts.remove(it.getKey());
-            if (it.getValue().getName().equals(deleteContact)) result = false;
+               delete = contacts.get(it.getKey()).getNumber();
         }
+        contacts.remove(delete);
+        if (contacts.containsKey(delete)) result = false;
         return result;
     }
 
